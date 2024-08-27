@@ -1,54 +1,78 @@
-/*================================*/
-/* CSS styling for the popup menu */
-/*================================*/
-
 body {
-  text-align: center;
-  font-family: 'Helvetica';
   width: 300px;
-  margin: 0;
-  padding: 1em;
-  color: white;
-  background: radial-gradient(#2C4792, #162346);
-  border: solid 2px #2C4792;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  user-select: none;
+  padding: 10px;
+  font-family: 'Roboto', Arial, sans-serif;
 }
 
 h1 {
-  font-size: 1.8em;
-  font-weight: 100;
-  margin: 0.8em;
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 
-button {
-  cursor: pointer;
-  width: 90%;
-  height: 3em;
-  font-size: 1.5em;
-  padding: 0 1em;
-  margin: 0.5em;
-  background: #2D8BDA;
-  opacity: 0.9;
+#clickMe, #submit {
+  margin: 10px 0 15px auto;
+  padding: 10px 20px;
+  background-color: #EB4511;
+  border-radius: 10px;
   color: white;
-  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+.favorite {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.favorite img {
+  border-radius: 10px;
+  max-width: 40%;
+  height: auto;
+  margin-right: 10px;
+}
+
+.favorite p {
+  margin: 5px 0;
+  flex-grow: 1;
+  font-weight: bold;
+}
+
+.custom-checkbox {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #EB4511;
+  border-radius: 6px;
+  outline: none;
+  cursor: pointer;
+  margin-left: 15px;
+  position: relative;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
-  outline: none;
+  justify-content: center;
+  flex-shrink: 0; 
 }
 
-button:hover {
-  border: solid 1px white;
-  opacity: 1;
+.custom-checkbox:checked {
+  background-color: #EB4511;
 }
 
-button:disabled {
-  opacity: 0.3;
-}
-
-button span {
-  width: 25%;
-  font-size: 2em;
+.custom-checkbox:checked::after {
+  content: '\2714';
+  font-size: 14px;
+  color: white;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
