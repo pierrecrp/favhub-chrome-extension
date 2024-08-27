@@ -76,3 +76,7 @@ h1 {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.d-none {
+  display: none !important;
+}

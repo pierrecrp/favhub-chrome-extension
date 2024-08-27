@@ -42,6 +42,9 @@ button.addEventListener('click', (event) => {
 
           response.favorites.forEach(favorite => {
             const favoriteElement = favoriteTemplate.content.cloneNode(true);
+            const favoriteDiv = favoriteElement.querySelector(".favorite")
+            favoriteDiv.dataset.source = favorite.source
+            favoriteDiv.dataset.url = favorite.url
 
             const imgElement = favoriteElement.querySelector('img');
             imgElement.src = favorite.image;
@@ -50,6 +53,7 @@ button.addEventListener('click', (event) => {
             const pElement = favoriteElement.querySelector('p');
             pElement.textContent = favorite.title;
 
+            console.log(favoriteDiv)
             favoritesList.appendChild(favoriteElement);
           });
         }
@@ -63,6 +67,17 @@ submitButton.addEventListener('click', () => {
     .filter(favorite => favorite.querySelector('input[type="checkbox"]').checked)
     .map(favorite => ({
       title: favorite.querySelector('p').textContent,
-      image: favorite.querySelector('img').src
+      source: favorite.dataset.source,
+      url: favorite.dataset.url,
     }));
+  chrome.runtime.sendMessage({ action: 'postFavorites', data: selectedFavorites }, function(response) {
+    if (response === 'created') {
+      console.log(response)
+      // const validationElement = favoriteElement.querySelector('.d-none');
+      // validationElement.classList.remove('d-none');
+      
+      // Sélectionner la div avec la classe favorites container et lui ajouter la classe d-none
+      // Remove la class d-none sur le h2
+    }
+  })
 });
