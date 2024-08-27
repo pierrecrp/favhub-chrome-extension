@@ -7,9 +7,11 @@ chrome.runtime.onMessage.addListener(
 
     if (request.action === 'selectLeBonCoinFavorites') {
       document.querySelectorAll("div[data-test-id='adcard-outlined']").forEach(favorite => {
+        const image = favorite.querySelector("._2JtY0 img")
+        const srcImage = image?.src ? image.src : "../images/logo-favhub.png";
         favoritesList.push({
           title: favorite.querySelector("p[data-qa-id='aditem_title']").innerText,
-          image: favorite.querySelector("._2JtY0 img").src,
+          image: srcImage,
           url: favorite.parentElement.href,
           source: "leboncoin",
         });
