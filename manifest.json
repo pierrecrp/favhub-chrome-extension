@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "Favhub",
-  "description": "Chrome extension workshop for Le Wagon Tokyo",
+  "name": "FavHub",
+  "description": "Extension Chrome FavHub",
   "author": "Your name",
   "version": "1",
   "content_scripts": [
