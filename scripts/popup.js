@@ -5,27 +5,56 @@ const submitButton = document.querySelector('#submit');
 
 button.addEventListener('click', (event) => {
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, { action: 'selectFavorites' }, function(response) {
-      if (chrome.runtime.lastError) {
-        console.error('Erreur:', chrome.runtime.lastError.message);
-      } else {
-        console.log(response);
-        favoritesList.innerHTML = '';
+    const url = tabs[0].url
 
-        response.favorites.forEach(favorite => {
-          const favoriteElement = favoriteTemplate.content.cloneNode(true);
+    if (url.includes("vinted.fr")) {
+    // if (tabs[0]// IF tabs[0] === url vinted à mettre ici et changer le nom de l'action
+      chrome.tabs.sendMessage(tabs[0].id, { action: 'selectVintedFavorites' }, function(response) {
+        if (chrome.runtime.lastError) {
+          console.error('Erreur:', chrome.runtime.lastError.message);
+        } else {
+          console.log(response);
+          console.log(favoritesList);
+          favoritesList.innerHTML = '';
 
-          const imgElement = favoriteElement.querySelector('img');
-          imgElement.src = favorite.image;
-          imgElement.alt = favorite.title;
+          response.favorites.forEach(favorite => {
+            const favoriteElement = favoriteTemplate.content.cloneNode(true);
 
-          const pElement = favoriteElement.querySelector('p');
-          pElement.textContent = favorite.title;
+            const imgElement = favoriteElement.querySelector('img');
+            imgElement.src = favorite.image;
+            imgElement.alt = favorite.title;
 
-          favoritesList.appendChild(favoriteElement);
-        });
-      }
-    });
+            const pElement = favoriteElement.querySelector('p');
+            pElement.textContent = favorite.title;
+
+            favoritesList.appendChild(favoriteElement);
+          });
+        }
+      });
+
+    } else if (url.includes("leboncoin.fr")) {
+      chrome.tabs.sendMessage(tabs[0].id, { action: 'selectLeBonCoinFavorites' }, function(response) {
+        if (chrome.runtime.lastError) {
+          console.error('Erreur:', chrome.runtime.lastError.message);
+        } else {
+          console.log(response);
+          favoritesList.innerHTML = '';
+
+          response.favorites.forEach(favorite => {
+            const favoriteElement = favoriteTemplate.content.cloneNode(true);
+
+            const imgElement = favoriteElement.querySelector('img');
+            imgElement.src = favorite.image;
+            imgElement.alt = favorite.title;
+
+            const pElement = favoriteElement.querySelector('p');
+            pElement.textContent = favorite.title;
+
+            favoritesList.appendChild(favoriteElement);
+          });
+        }
+      });
+    }
   });
 });
 
