@@ -32,8 +32,8 @@ h1 {
 
 .favorite img {
   border-radius: 10px;
-  max-width: 40%;
-  height: auto;
+  width: 100px;
+  height: 100px;
   margin-right: 10px;
 }
 
@@ -59,7 +59,7 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0; 
+  flex-shrink: 0;
 }
 
 .custom-checkbox:checked {
