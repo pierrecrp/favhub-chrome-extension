@@ -28,7 +28,7 @@ chrome.runtime.onMessage.addListener(
           title: favorite.querySelector(".new-item-box__description p").innerText,
           image: favorite.querySelector(".new-item-box__image .web_ui__Image__content").src,
           url: favorite.querySelector(".u-position-relative a").href,
-          source: "leboncoin",
+          source: "vinted",
         });
       });
 
