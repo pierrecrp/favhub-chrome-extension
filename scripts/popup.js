@@ -6,7 +6,6 @@ const favoritesContainer = document.querySelector('.favorites-container');
 const confirmationMessage = document.querySelector('#confirmation-message');
 const errorMessage = document.querySelector('#error-message');
 
-
 const signIn = document.querySelector(".form-wrapper")
 const welcome = document.querySelector(".welcome-wrapper")
 
@@ -23,7 +22,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
   })
 })
-
 
 const signInFetch = (signIn) => {
   signIn.addEventListener("submit", (event) => {
@@ -82,6 +80,8 @@ button.addEventListener('click', (event) => {
 
           favoritesList.appendChild(favoriteElement);
         });
+
+        submitButton.classList.remove('d-none');
       }
     });
   });
@@ -94,7 +94,7 @@ submitButton.addEventListener('click', () => {
       title: favorite.querySelector('p').textContent,
       source: favorite.dataset.source,
       url: favorite.dataset.url,
-    }));
+    }))
 
   chrome.runtime.sendMessage({ action: 'postFavorites', data: selectedFavorites }, function(response) {
     if (response === 'created') {
@@ -103,11 +103,12 @@ submitButton.addEventListener('click', () => {
       confirmationMessage.classList.remove('d-none');
       submitButton.classList.add('d-none');
 
-
       const checkmarkContainer = document.querySelector('.checkmark-container');
       checkmarkContainer.style.display = 'flex';
 
+      document.documentElement.classList.add("little-box")
 
+      document.getElementById('dashboardButton').classList.remove('d-none');
     } else {
       console.error('Erreur lors de l\'ajout des favoris:', response);
       errorMessage.classList.remove('d-none');
@@ -118,4 +119,8 @@ submitButton.addEventListener('click', () => {
       }, 3000);
     }
   });
+});
+
+document.getElementById('dashboardButton').addEventListener('click', () => {
+  chrome.tabs.create({ url: 'http://localhost:3000/dashboards' }); 
 });
