@@ -6,6 +6,46 @@ const favoritesContainer = document.querySelector('.favorites-container');
 const confirmationMessage = document.querySelector('#confirmation-message');
 const errorMessage = document.querySelector('#error-message');
 
+
+const signIn = document.querySelector(".form-wrapper")
+const welcome = document.querySelector(".welcome-wrapper")
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  chrome.storage.local.get(['token'], function(result) {
+    console.log(result.token)
+    if (result.token) {
+      signIn.classList.add('d-none')
+      welcome.classList.remove('d-none')
+    } else {
+      signInFetch(signIn)
+      signIn.classList.add('d-none')
+      welcome.classList.remove('d-none')
+    }
+  })
+})
+
+
+const signInFetch = (signIn) => {
+  signIn.addEventListener("submit", (event) => {
+    const email = signIn.querySelector("input[name='email']").value
+    const password = signIn.querySelector("input[name='password']").value
+    fetch('http://localhost:3000/api/v1/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      chrome.storage.local.set({
+        token: data.token,
+        user: data.user
+      })
+    })
+  })
+}
+
 button.addEventListener('click', (event) => {
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     const url = tabs[0].url;
