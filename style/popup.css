@@ -1,13 +1,24 @@
+html {
+  border-radius: 15px !important;
+  overflow: hidden;
+}
+
 body {
   width: 300px;
   padding: 10px;
   font-family: 'Roboto', Arial, sans-serif;
+  border-radius: 15px;
+  overflow: hidden;
 }
 
 h1 {
   font-size: 18px;
   margin-bottom: 10px;
   font-weight: bold;
+}
+
+h2 {
+  text-align: center;
 }
 
 #clickMe, #submit {
@@ -86,7 +97,7 @@ h1 {
   display: none;
   width: 60px;
   height: 60px;
-  margin: 20px auto;
+  margin: 40px auto;
   border-radius: 50%;
   background-color: #EB4511;
   position: relative;
@@ -119,3 +130,22 @@ h1 {
   }
 }
 
+
+.little-box {
+  height: 190px !important
+}
+
+#dashboardButton {
+  margin-top: 20px;
+  margin-left: 85px;
+  padding: 10px 20px;
+  background-color: #EB4511;
+  border-radius: 10px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-family: 'Roboto', Arial, sans-serif;
+  width: auto;
+  box-sizing: border-box;
+  display: block;
+}
