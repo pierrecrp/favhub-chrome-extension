@@ -1,37 +1,9 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400);
-
-/* fontawesome */
-@import url(http://weloveiconfonts.com/api/?family=fontawesome);
-
-[class*="fontawesome-"]:before {
-  font-family: 'FontAwesome', sans-serif;
-}
-
-/* Simple Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* body */
-body {
-  background: white;
-  color: #5e5e5e;
-  font: 400 87.5%/1.5em 'Open Sans', sans-serif;
-}
-
-/* Form Layout */
+/* Form Layout
 .form-wrapper {
   background: #fafafa;
   margin: 3em auto;
   padding: 0 1em;
   max-width: 370px;
-}
-
-h1 {
-  text-align: center;
-  padding: 1em 0;
 }
 
 form {
@@ -100,4 +72,4 @@ form {
 
 .form-footer a:hover {
   border-bottom: 1px dotted #8c8c8c;
-}
+} */

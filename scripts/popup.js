@@ -9,22 +9,9 @@ const errorMessage = document.querySelector('#error-message');
 const signIn = document.querySelector(".form-wrapper")
 const welcome = document.querySelector(".welcome-wrapper")
 
-document.addEventListener('DOMContentLoaded', (event) => {
-  chrome.storage.local.get(['token'], function(result) {
-    console.log(result.token)
-    if (result.token) {
-      signIn.classList.add('d-none')
-      welcome.classList.remove('d-none')
-    } else {
-      signInFetch(signIn)
-      signIn.classList.add('d-none')
-      welcome.classList.remove('d-none')
-    }
-  })
-})
-
 const signInFetch = (signIn) => {
   signIn.addEventListener("submit", (event) => {
+    event.preventDefault()
     const email = signIn.querySelector("input[name='email']").value
     const password = signIn.querySelector("input[name='password']").value
     fetch('http://localhost:3000/api/v1/login', {
@@ -36,13 +23,27 @@ const signInFetch = (signIn) => {
     })
     .then(response => response.json())
     .then(data => {
+      debugger
       chrome.storage.local.set({
         token: data.token,
         user: data.user
       })
+      signIn.classList.add('d-none')
+      welcome.classList.remove('d-none')
     })
   })
 }
+
+chrome.storage.local.get(['token'], function(result) {
+  console.log(result.token)
+  if (result.token) {
+    signIn.classList.add('d-none')
+    welcome.classList.remove('d-none')
+  } else {
+    signInFetch(signIn)
+  }
+})
+
 
 button.addEventListener('click', (event) => {
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
@@ -87,7 +88,8 @@ button.addEventListener('click', (event) => {
   });
 });
 
-submitButton.addEventListener('click', () => {
+submitButton.addEventListener('click', (event) => {
+  event.preventDefault()
   const selectedFavorites = Array.from(favoritesList.querySelectorAll('.favorite'))
     .filter(favorite => favorite.querySelector('input[type="checkbox"]').checked)
     .map(favorite => ({
@@ -97,6 +99,7 @@ submitButton.addEventListener('click', () => {
     }))
 
   chrome.runtime.sendMessage({ action: 'postFavorites', data: selectedFavorites }, function(response) {
+    console.log(response)
     if (response === 'created') {
       console.log(response);
       favoritesContainer.classList.add('d-none');
@@ -112,7 +115,6 @@ submitButton.addEventListener('click', () => {
     } else {
       console.error('Erreur lors de l\'ajout des favoris:', response);
       errorMessage.classList.remove('d-none');
-      favoritesContainer.classList.add('d-none');
 
       setTimeout(() => {
         errorMessage.classList.add('d-none');
@@ -122,5 +124,5 @@ submitButton.addEventListener('click', () => {
 });
 
 document.getElementById('dashboardButton').addEventListener('click', () => {
-  chrome.tabs.create({ url: 'http://localhost:3000/dashboards' }); 
+  chrome.tabs.create({ url: 'http://localhost:3000/dashboards' });
 });
