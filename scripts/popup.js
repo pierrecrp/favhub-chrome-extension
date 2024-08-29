@@ -111,6 +111,7 @@ submitButton.addEventListener('click', () => {
     } else {
       console.error('Erreur lors de l\'ajout des favoris:', response);
       errorMessage.classList.remove('d-none');
+      favoritesContainer.classList.add('d-none');
 
       setTimeout(() => {
         errorMessage.classList.add('d-none');
