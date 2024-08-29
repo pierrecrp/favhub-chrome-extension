@@ -32,33 +32,26 @@
 
   <div class="welcome-wrapper d-none">
     <h2 class="welcome-user"></h2>
-
-  <div class="favorites-container">
-    <h1>Mes favoris</h1>
-    <button id="clickMe">Récupérer mes favoris</button>
-    <div id="favoritesList"></div>
-  </div>
-
-  <h2 id="confirmation-message" class="d-none">Vos favoris ont bien été ajoutés</h2>
-  <div class="checkmark-container">
-    <div class="checkmark"></div>
-  </div>
-  <h2 id="error-message" class="d-none">Une erreur est survenue lors de l'ajout des favoris</h2>
-
-  <template id="favoriteTemplate">
-    <div class="favorite" data-source="" data-url="">
-      <img src="" alt="Image du favori">
-      <p></p>
-      <input type="checkbox" class="custom-checkbox" checked>
+    <div class="favorites-container">
+      <h1>Mes favoris</h1>
+      <button id="clickMe">Récupérer mes favoris</button>
+      <div id="favoritesList"></div>
     </div>
-  </template>
-
-  <button id="submit">Valider</button>
-
+    <h2 id="confirmation-message" class="d-none">Vos favoris ont bien été ajoutés</h2>
+    <div class="checkmark-container">
+      <div class="checkmark"></div>
+    </div>
+    <button id="dashboardButton" class="d-none">Mon Dashboard</button>
+    <h2 id="error-message" class="d-none">Une erreur est survenue lors de l'ajout des favoris</h2>
+    <template id="favoriteTemplate">
+      <div class="favorite" data-source="" data-url="">
+        <img src="" alt="Image du favori">
+        <p></p>
+        <input type="checkbox" class="custom-checkbox" checked>
+      </div>
+    </template>
+    <button id="submit" class="d-none">Valider</button>
   </div>
-
-
-
   <script src="scripts/popup.js"></script>
 </body>
 </html>
