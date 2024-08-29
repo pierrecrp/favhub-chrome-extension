@@ -11,12 +11,18 @@
     <h1>Mes favoris</h1>
     <button id="clickMe">Récupérer mes favoris</button>
     <div id="favoritesList"></div>
-  </div>  
-  <!-- <h2 class="d-none">Vos favoris ont bien été ajoutés</h2> -->
+  </div>
+
+  <h2 id="confirmation-message" class="d-none">Vos favoris ont bien été ajoutés</h2>
+  <div class="checkmark-container">
+    <div class="checkmark"></div>
+  </div>
+  <h2 id="error-message" class="d-none">Une erreur est survenue lors de l'ajout des favoris</h2>
+
   <template id="favoriteTemplate">
     <div class="favorite" data-source="" data-url="">
-        <img src="" alt="Image du favori">
-        <p></p>
+      <img src="" alt="Image du favori">
+      <p></p>
       <input type="checkbox" class="custom-checkbox" checked>
     </div>
   </template>

@@ -80,3 +80,42 @@ h1 {
 .d-none {
   display: none !important;
 }
+
+
+.checkmark-container {
+  display: none;
+  width: 60px;
+  height: 60px;
+  margin: 20px auto;
+  border-radius: 50%;
+  background-color: #EB4511;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkmark {
+  width: 18px;
+  height: 35px;
+  border-right: 5px solid white;
+  border-bottom: 5px solid white;
+  position: absolute;
+  top: 10%;
+  left: 30%;
+  right: 80%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  animation: checkmark-animation 0.5s ease forwards;
+}
+
+
+@keyframes checkmark-animation {
+  0% {
+    opacity: 0;
+    transform: rotate(45deg) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(45deg) scale(1);
+  }
+}
+
