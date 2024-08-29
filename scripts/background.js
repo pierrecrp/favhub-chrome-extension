@@ -2,8 +2,18 @@ chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if (request.action === "postFavorites") {
       // Todo Call API
-      console.log(request.data) // favoris sélectionnés à envoyer dans le post
-      sendResponse('created')
+
+      fetch('http://localhost:3000/api/v1/favorites', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ favorites: request.data }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        sendResponse(data.status)
+      })
     }
   }
 )
