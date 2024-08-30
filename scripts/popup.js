@@ -14,7 +14,7 @@ const signInFetch = (signIn) => {
     event.preventDefault()
     const email = signIn.querySelector("input[name='email']").value
     const password = signIn.querySelector("input[name='password']").value
-    fetch('http://localhost:3000/api/v1/login', {
+    fetch('http://favhub-212f785f0308.herokuapp.com/api/v1/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -124,5 +124,7 @@ submitButton.addEventListener('click', (event) => {
 });
 
 document.getElementById('dashboardButton').addEventListener('click', () => {
-  chrome.tabs.create({ url: 'http://localhost:3000/dashboards' });
+  chrome.tabs.create({ url: 'http://favhub-212f785f0308.herokuapp.com/dashboards' });
 });
+
+// http://favhub-212f785f0308.herokuapp.com/dashboards
